@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import ldap, json, copy, uuid, decimal, datetime, ldap.modlist
-from adobjstype import *
+from .adobjstype import *
 
 class adObj(object):
 	'''Class to represent a LDAP Object using python object attributes like LDAP attributes
@@ -383,7 +383,7 @@ class adGroup(adObj):
 			try:
 				lst = self.member.raw
 				lst.append(dn)
-			except AttributeError, e:
+			except AttributeError as e:
 				lst = dn
 			self.member = lst
 			self.save()

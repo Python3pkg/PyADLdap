@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, uuid, datetime
-from adutils import adUtils
+from .adutils import adUtils
 
 
 class adGenericAttr(object):
@@ -54,7 +54,7 @@ class PrimaryGroupID(adGenericAttr):
 
 class unicodePwd(adGenericAttr):
 	def ValueToRaw(self,password):
-		unicode_pass = unicode('\"' + str(password[0]) + '\"', 'iso-8859-1')
+		unicode_pass = str('\"' + str(password[0]) + '\"', 'iso-8859-1')
 		super(unicodePwd,self).ValueToRaw([unicode_pass.encode("utf-16-le")])
 
 class UserAccountControl(adGenericAttr):
@@ -77,8 +77,8 @@ class UserAccountControl(adGenericAttr):
 			if binary[bit] == '1':
 				decimal = int(binary[bit]+'0'*bit,2)
 				try:
-					position = self.adldap.acControl.values().index(decimal)
-					value = self.adldap.acControl.keys()[position]
+					position = list(self.adldap.acControl.values()).index(decimal)
+					value = list(self.adldap.acControl.keys())[position]
 					values.append(value)
 				except:
 					values.append("UNKNOWN")

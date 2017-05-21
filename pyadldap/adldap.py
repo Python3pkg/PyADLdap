@@ -2,11 +2,11 @@
 
 import ldap, random
 from socket import gethostbyname
-from urlparse import urlparse as getFQDN
+from urllib.parse import urlparse as getFQDN
 
-from adutils import adUtils
+from .adutils import adUtils
 
-from adobjs import adObjs, adGroups, adComputers, adUsers, adOUs
+from .adobjs import adObjs, adGroups, adComputers, adUsers, adOUs
 import getpass
 
 
